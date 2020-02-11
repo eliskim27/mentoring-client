@@ -8,6 +8,11 @@ class MainContainer extends React.Component {
         if (userType === 'mentor') {
             return (
                 <MentorContainer
+                    currentUser={this.props.currentUser}
+                    allConnections={this.props.allConnections}
+                    deleteConnection={this.props.deleteConnection}
+                    approveConnection={this.props.approveConnection}
+                    editProfile={this.props.editProfile}
                 />)
         } if (userType === 'mentee') {
             return (
@@ -16,6 +21,8 @@ class MainContainer extends React.Component {
                     allMentors={this.props.allMentors}
                     allConnections={this.props.allConnections}
                     newConnect={this.props.newConnect}
+                    deleteConnection={this.props.deleteConnection}
+                    editProfile={this.props.editProfile}
                 />)
         } else {}
     }
@@ -23,7 +30,7 @@ class MainContainer extends React.Component {
     render() {
         return(
             <div>
-                {this.whichCont(this.props.currentUser.usertype)}
+                {this.whichCont(this.props.currentUser.type)}
             </div>
         )
     }

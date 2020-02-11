@@ -1,8 +1,7 @@
 import React from 'react';
-import MentorCard from './MentorCard';
+import MentorMenteeCard from './MentorMenteeCard';
 
 class Search extends React.Component {
-
     render(){
         return(
             <div>
@@ -12,12 +11,13 @@ class Search extends React.Component {
                 <div>
                     {this.props.allMentors.map((mentor, index) => {
                         return(
-                            <MentorCard
+                            <MentorMenteeCard
                                 key={index}
-                                mentor={mentor}
-                                connections={this.props.allConnections.filter(connection => connection.mentee_id === this.props.currentUser.id)}
-                                currentUserId={this.props.currentUser.id}
+                                mentor={mentor.attributes}
+                                mentorId={mentor.id}
+                                currentUser={this.props.currentUser}
                                 newConnect={this.props.newConnect}
+                                seeAllInfo={false}
                             />
                         )
                     })}
@@ -25,8 +25,6 @@ class Search extends React.Component {
             </div>
         )
     }
-
-
 }
 
 export default Search

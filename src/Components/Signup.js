@@ -1,16 +1,18 @@
 import React from 'react';
 
-class ProfileEdit extends React.Component {
-    state = {
-        id: this.props.currentUser.id,
-        first: this.props.currentUser.attributes.first,
-        last: this.props.currentUser.attributes.last,
-        email: this.props.currentUser.attributes.email,
-        location: this.props.currentUser.attributes.location,
-        age: this.props.currentUser.attributes.age,
-        gender: this.props.currentUser.attributes.gender,
-        bio: this.props.currentUser.attributes.bio
-    }
+const initialState = {
+    first: "",
+    last: "",
+    email: "",
+    location: "",
+    age: "",
+    gender: "",
+    bio: "",
+    usertype: null
+}
+
+class Signup extends React.Component {
+    state = initialState
 
     handleChange = (e) => {
         this.setState({[e.target.name]: e.target.value})
@@ -18,13 +20,12 @@ class ProfileEdit extends React.Component {
 
     handleSubmit = (e) => {
         e.preventDefault()
-
-        fetch(`http://localhost:3000/${this.props.currentUser.type}s/${this.state.id}`,{
-            method: "PATCH",
+        fetch(`http://localhost:3000/${this.state.usertype}`, {
+            method: "POST",
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
-              },
+            },
             body: JSON.stringify({
                 first: this.state.first,
                 last: this.state.last,
@@ -33,19 +34,27 @@ class ProfileEdit extends React.Component {
                 age: this.state.age,
                 gender: this.state.gender,
                 bio: this.state.bio,
+                usertype: this.state.usertype,
             })
         })
-        .then(resp => resp.json())
-        .then(updatedObj => {
-            this.props.editProfile(updatedObj.data)
-            this.props.toggleShowEdit()
+        .then(response => response.json())
+        .then(newUserObj => {
+            this.props.signupSubmit(newUserObj.data)
         })
+        this.setState(initialState)
+        this.props.history.push("/user/profile");
     }
 
     render(){
         return(
-            <div>
+            <div> SIGN UP!
                 <form onSubmit={this.handleSubmit}>
+                    <div> User Type: 
+                        <label><input type="radio" name="usertype" onChange={this.handleChange}value="mentors"
+                                checked={this.state.usertype === "mentors" ? true : false}/> Mentor </label>
+                        <label><input type="radio" name="usertype" onChange={this.handleChange}value="mentees"
+                                checked={this.state.usertype === "mentees" ? true : false}/> Mentee </label>
+                    </div>
                     <label> First: <input value={this.state.first} onChange={this.handleChange} name="first"></input></label>
                     <label> Last: <input value={this.state.last} onChange={this.handleChange} name="last"></input></label><br/>
                     <label> Email: <input value={this.state.email} onChange={this.handleChange} name="email"></input></label><br/>
@@ -57,7 +66,6 @@ class ProfileEdit extends React.Component {
                         <label><input type="radio" name="gender" onChange={this.handleChange}value="Female"
                                 checked={this.state.gender === "Female" ? true : false}/> Female </label>
                     </div>
-
                     <label> Bio: <textarea value={this.state.bio} onChange={this.handleChange} 
                     name="bio" rows="7" cols="50"></textarea></label><br/>
                     <input type="submit" value="Submit"></input><br/>
@@ -69,4 +77,4 @@ class ProfileEdit extends React.Component {
 
 }
 
-export default ProfileEdit
+export default Signup

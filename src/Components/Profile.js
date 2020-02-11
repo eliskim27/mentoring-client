@@ -10,18 +10,22 @@ class Profile extends React.Component {
         this.setState({showEdit: !this.state.showEdit})
     }
 
+    editSubmitToggle = () => {
+        console.log("switch")
+    }
+
     render(){
         return(
             <div>
                 {this.state.showEdit ?
-                    <ProfileEdit/> :
+                    <ProfileEdit currentUser={this.props.currentUser} editProfile={this.props.editProfile} toggleShowEdit={this.toggleShowEdit}/> :
                     <div>
-                        <h1>{this.props.currentUser.first} {this.props.currentUser.last}</h1>
-                        <div>Email: {this.props.currentUser.email}</div>
-                        <div>Location: {this.props.currentUser.location}</div>
-                        <div>Age: {this.props.currentUser.age}</div>
-                        <div>Gender: {this.props.currentUser.gender}</div>
-                        <div>Bio: {this.props.currentUser.bio}</div>
+                        <h1>{this.props.currentUser.attributes.first} {this.props.currentUser.attributes.last}</h1>
+                        <div>Email: {this.props.currentUser.attributes.email}</div>
+                        <div>Location (State): {this.props.currentUser.attributes.location}</div>
+                        <div>Age: {this.props.currentUser.attributes.age}</div>
+                        <div>Gender: {this.props.currentUser.attributes.gender}</div>
+                        <div>Bio: {this.props.currentUser.attributes.bio}</div>
                     </div>}
                     <br/>
                 <button 

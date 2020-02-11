@@ -13,8 +13,8 @@ class NavBar extends React.Component {
         } else {
             return (
                 <span>
-                    <button>Login</button>
-                    <button>Sign Up</button>
+                    <Link to="/login"><button>Login</button></Link>
+                    <Link to="/signup"><button>Sign Up</button></Link>
                 </span>
     )}}
 
@@ -46,8 +46,8 @@ class NavBar extends React.Component {
                 <span>
                     <Link to="/"><button>Home</button></Link>
                 </span>
-                {this.userMenuShow(this.props.currentUser.usertype)}
-                {this.userControls(this.props.currentUser.usertype)}
+                {this.userMenuShow(this.props.currentUser.type)}
+                {this.userControls(this.props.currentUser.type)}
             </div>
         )
     }
