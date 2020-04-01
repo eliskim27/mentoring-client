@@ -7,8 +7,8 @@ class MentorContainer extends React.Component {
 
     render(){
         return(
-            <div>
-                MentorContainer
+            <div style={{padding:"20px"}} >
+
                 <Switch>
                     <Route path='/user/profile' render={() =>
                         <Profile

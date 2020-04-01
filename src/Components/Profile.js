@@ -16,10 +16,12 @@ class Profile extends React.Component {
 
     render(){
         return(
-            <div>
+            <div style={{border:"20px"}} >
+                <h1 className="header">Your Profile: </h1>
                 {this.state.showEdit ?
                     <ProfileEdit currentUser={this.props.currentUser} editProfile={this.props.editProfile} toggleShowEdit={this.toggleShowEdit}/> :
-                    <div>
+                    <div style={{border:"20px"}} >
+                        <img src={this.props.currentUser.attributes.picture}></img>
                         <h1>{this.props.currentUser.attributes.first} {this.props.currentUser.attributes.last}</h1>
                         <div>Email: {this.props.currentUser.attributes.email}</div>
                         <div>Location (State): {this.props.currentUser.attributes.location}</div>
@@ -28,7 +30,8 @@ class Profile extends React.Component {
                         <div>Bio: {this.props.currentUser.attributes.bio}</div>
                     </div>}
                     <br/>
-                <button 
+                <button  
+                    className="ui button"
                     onClick={this.toggleShowEdit}
                 > {this.state.showEdit ? 'Return to Profile' : 'Edit Information'} </button>                        
             </div>

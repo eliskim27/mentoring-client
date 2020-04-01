@@ -29,7 +29,7 @@ class MainContainer extends React.Component {
 
     render() {
         return(
-            <div>
+            <div className="ui center aligned container">
                 {this.whichCont(this.props.currentUser.type)}
             </div>
         )

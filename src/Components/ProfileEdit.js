@@ -9,7 +9,8 @@ class ProfileEdit extends React.Component {
         location: this.props.currentUser.attributes.location,
         age: this.props.currentUser.attributes.age,
         gender: this.props.currentUser.attributes.gender,
-        bio: this.props.currentUser.attributes.bio
+        bio: this.props.currentUser.attributes.bio,
+        picture: this.props.currentUser.attributes.picture
     }
 
     handleChange = (e) => {
@@ -33,6 +34,7 @@ class ProfileEdit extends React.Component {
                 age: this.state.age,
                 gender: this.state.gender,
                 bio: this.state.bio,
+                picture: this.state.picture
             })
         })
         .then(resp => resp.json())
@@ -44,24 +46,64 @@ class ProfileEdit extends React.Component {
 
     render(){
         return(
-            <div>
-                <form onSubmit={this.handleSubmit}>
-                    <label> First: <input value={this.state.first} onChange={this.handleChange} name="first"></input></label>
-                    <label> Last: <input value={this.state.last} onChange={this.handleChange} name="last"></input></label><br/>
-                    <label> Email: <input value={this.state.email} onChange={this.handleChange} name="email"></input></label><br/>
-                    <label> Location (State): <input value={this.state.location} onChange={this.handleChange} name="location"></input></label><br/>
-                    <label> Age: <input value={this.state.age} onChange={this.handleChange} name="age"></input></label><br/>
-                    <div> Gender: 
-                        <label><input type="radio" name="gender" onChange={this.handleChange}value="Male"
-                                checked={this.state.gender === "Male" ? true : false}/> Male </label>
-                        <label><input type="radio" name="gender" onChange={this.handleChange}value="Female"
-                                checked={this.state.gender === "Female" ? true : false}/> Female </label>
+            <div className="ui grid">
+                <div className="ui form eight wide column centered">
+                    <div className="ui center aligned container"> 
+                    <h1 className="header">
+                    SIGN UP!
+                    </h1>
+                        <form 
+                            onSubmit={this.handleSubmit}
+                            className="ui form"
+                        >
+                            <div className="two fields">
+                                <div className="field">
+                                    <label> First Name: </label>
+                                    <input value={this.state.first} onChange={this.handleChange} name="first"></input>
+                                </div>
+                                <div className="field">
+                                    <label> Last Name: </label>
+                                    <input value={this.state.last} onChange={this.handleChange} name="last"></input><br/>
+                                </div>
+                            </div>
+                            <div className="field">
+                                <label> Email: </label>
+                                <input value={this.state.email} onChange={this.handleChange} name="email"></input><br/>
+                            </div>
+                            <div className="field">
+                                <label> Picture URL: </label>
+                                <input value={this.state.picture} onChange={this.handleChange} name="picture"></input><br/>
+                            </div>
+                            <div className="field">
+                                <label> Location (State): </label>
+                                <input value={this.state.location} onChange={this.handleChange} name="location"></input><br/>
+                            </div>
+                            <div className="field">
+                                <label> Age: </label>
+                                <input value={this.state.age} onChange={this.handleChange} name="age"></input><br/>
+                            </div>
+                            <div className="ui left aligned container">
+                                <div className="inline fields"> Gender: 
+                                    <div style={{padding:"10px"}}>
+                                        <div>
+                                            <label><input type="radio" name="gender" onChange={this.handleChange}value="Male"
+                                                    checked={this.state.gender === "Male" ? true : false}/> Male </label>
+                                        </div>
+                                        <div>
+                                            <label><input type="radio" name="gender" onChange={this.handleChange}value="Female"
+                                                    checked={this.state.gender === "Female" ? true : false}/> Female </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="field">
+                                <label> Bio: <textarea value={this.state.bio} onChange={this.handleChange} 
+                                name="bio" rows="3" cols="50"></textarea></label><br/>
+                            </div>
+                            <input className="ui submit button" type="submit" value="Submit"></input><br/>
+                        </form>
                     </div>
-
-                    <label> Bio: <textarea value={this.state.bio} onChange={this.handleChange} 
-                    name="bio" rows="7" cols="50"></textarea></label><br/>
-                    <input type="submit" value="Submit"></input><br/>
-                </form>
+                </div>
             </div>
         )
     }

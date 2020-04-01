@@ -25,9 +25,9 @@ class Login extends React.Component {
 
     render() {
         return(
-            <div>
+            <div className="ui center aligned container">
                 <form onSubmit={this.handleSubmit}>
-                    <div>Who would you like to log in as?</div>
+                    <h1 className="header">Who would you like to log in as?</h1>
                     <select onChange={this.handleChange}>
                         <option></option>
                         <option value="mentee">MENTEE</option>

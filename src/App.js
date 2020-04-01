@@ -76,28 +76,12 @@ class App extends React.Component {
 
   render() {
     return(
-      <div>
-{/* REMOVE BELOW!!! FOR TESTING ONLY */}
-        {/* <div>
-          <span>Who would you like to log in as?</span>
-          <select 
-            onChange={(e) => {
-              let newUser = {}
-              if (e.target.value === "mentee") {
-                newUser = this.state.allMentees.find(mentee => mentee.id === "1")
-              } if (e.target.value === "mentor") {
-                newUser = this.state.allMentors.find(mentor => mentor.id === "1")
-              } if (e.target.value === "none") {
-                newUser = {}
-              } 
-              this.setState({currentUser: newUser})}}>
-              <option defaultValue="none">NONE</option>
-              <option value="mentee">MENTEE</option>
-              <option value="mentor">MENTOR</option>
-          </select>
-        </div> */}
-{/* REMOVE ABOVE!!! FOR TESTING ONLY */}                                       
-
+      <div 
+        className="ui container"
+        style={{
+          padding:"10px"
+        }}
+      >
         <NavBar 
           currentUser={this.state.currentUser}
           logout={this.logout}

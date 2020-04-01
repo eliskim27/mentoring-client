@@ -27,18 +27,11 @@ class MentorMenteeCard extends React.Component {
     }
     
     render(){
-        // let menteeConnects = this.props.currentUser.attributes.connections
-        // console.log(menteeConnects)
-        // let x = menteeConnects.find(connection => connection.mentor_id === this.props.mentor.id)
-        // console.log(this.props.mentor)
-// console.log(this.props.mentor.connections[0].mentee_id)
         let mentorConnection = this.props.mentor.connections.find(connection => connection.mentee_id.toString() === this.props.currentUser.id.toString())
-        console.log(mentorConnection)
-        // let x = mentorConnections.find(connection => connection.mentee_id === this.props.currentUser.id)
-        // console.log(mentorConnection)
 
         return(
-            <div>
+            <div className="card">
+                <img src={this.props.currentUser.attributes.picture}></img>
                 <h1>{this.props.mentor.first} {this.props.mentor.last}</h1>
                 {this.props.seeAllInfo ? 
                     <div>Email: {this.props.mentor.email}</div> :
@@ -47,13 +40,15 @@ class MentorMenteeCard extends React.Component {
                 <div>Age: {this.props.mentor.age}</div>
                 <div>Gender: {this.props.mentor.gender}</div>
                 <div>Bio: {this.props.mentor.bio}</div>
-                { mentorConnection ? 
-                    <button>
-                        {mentorConnection.status === "approved" ? "Connection Approved" : "Connection Pending"}
-                    </button>
-                    : 
-                    <button onClick={this.newCon}>Connect</button> 
-                }
+                <div className="extra content">
+                    { mentorConnection ? 
+                        <button className="ui disabled button">
+                            {mentorConnection.status === "approved" ? "Connection Approved" : "Connection Pending"}
+                        </button>
+                        : 
+                        <button className="ui button" onClick={this.newCon}>Connect</button> 
+                    }
+                </div>
             </div>
         )
     }
